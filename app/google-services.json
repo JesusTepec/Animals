@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "311125285247",
+    "firebase_url": "https://animals-75be2.firebaseio.com",
+    "project_id": "animals-75be2",
+    "storage_bucket": "animals-75be2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311125285247:android:c0ebbb116e50b9d8",
+        "android_client_info": {
+          "package_name": "com.example.hdsolujtepec.animals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311125285247-tcgfk1hiuj4dt9omtgmkakvp4hqodpm5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZKGGOlKAJ9SPkJ0k16ARU-HPU6YNiv80"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

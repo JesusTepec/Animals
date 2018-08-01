@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Animals</string>
+    <string name="botonAgregar">Agregar Animal</string>
+    <string name="botonEditar">Editar Animal</string>
+    <string name="botonEliminar">Eliminar Animal</string>
+    <string name="placeholder_id">Id</string>
+    <string name="placeholder_nombre">Nombre</string>
+    <string name="placeholder_habitad">Habitad</string>
+    <string name="placeholder_photo">photoId</string>
+</resources>
