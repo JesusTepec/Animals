@@ -7,4 +7,6 @@
     <string name="placeholder_nombre">Nombre</string>
     <string name="placeholder_habitad">Habitad</string>
     <string name="placeholder_photo">photoId</string>
+    <string name="btn_agregar">Agregar</string>
+    <string name="btn_cancelar">Cancelar</string>
 </resources>

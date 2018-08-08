@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,10 +17,11 @@ import com.example.hdsolujtepec.animals.Adapters.RecyclerViewAdapter;
 import com.example.hdsolujtepec.animals.Model.AdminSQLiteOpenHelper;
 import com.example.hdsolujtepec.animals.Model.Animal;
 import com.example.hdsolujtepec.animals.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
 
     RecyclerViewAdapter adapter;
     ArrayList<Animal> animals = new ArrayList<>();
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Obtain the FirebaseAnalytics instance.
 
         // data to populate the RecyclerView with
         //animals.add(new Animal("Zorro", "Pradera", R.drawable.zorro));
@@ -46,16 +50,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     @Override
     public void onItemClick(View view, int position) {
         seleccionado = position;
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
     public void onButtonClick(View view) {
-        Toast.makeText(this, "button " + ((Button)view).getText().toString(), Toast.LENGTH_SHORT).show();
         String buttonText = ((Button)view).getText().toString();
         if(buttonText.toLowerCase().contains("agregar".toLowerCase())) {
-            //insertSingleItem();
+
             Intent formAgregar = new Intent(getApplicationContext(), FormAgregarAnimal.class);
             startActivity(formAgregar);
+
         }
         if(buttonText.toLowerCase().contains("eliminar".toLowerCase()))
             removeSingleItem();
@@ -89,9 +92,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     public void consultarTodo() {
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "animals_db", null, 1);
-
         SQLiteDatabase bd = admin.getWritableDatabase();
-
         Cursor fila = bd.rawQuery(
                 "select nombre, habitad, photoId from animal", null);
 
@@ -100,8 +101,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                 animals.add(new Animal(fila.getString(0), fila.getString(1), Integer.parseInt(fila.getString(2))));
             } while (fila.moveToNext());
 
-        } else
+        } else {
             Toast.makeText(this, "No existe ningún registro", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "SQL: No existen registro");
+        }
 
         bd.close();
 
