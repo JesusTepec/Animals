@@ -17,6 +17,7 @@ import com.example.hdsolujtepec.animals.Adapters.RecyclerViewAdapter;
 import com.example.hdsolujtepec.animals.Model.AdminSQLiteOpenHelper;
 import com.example.hdsolujtepec.animals.Model.Animal;
 import com.example.hdsolujtepec.animals.R;
+import com.example.hdsolujtepec.animals.Utilidades.AnalyticsRegistro;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
@@ -32,13 +33,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Obtain the FirebaseAnalytics instance.
-
-        // data to populate the RecyclerView with
-        //animals.add(new Animal("Zorro", "Pradera", R.drawable.zorro));
-        //animals.add(new Animal("Leon", "Sabana", R.drawable.leon));
         consultarTodo();
-        // set up the RecyclerView
+        // configuracion de RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycle_view_animals);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -75,6 +71,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         adapter.notifyItemInserted(seleccionado + 1);
     }
 
+    private void updateSingleItem() {
+        Animal newValue = new Animal("Perro", "Ciudad", R.drawable.zorro);
+        (new AnalyticsRegistro(this)).registrarEvento(AnalyticsRegistro.Metrica.NUEVO_REGISTRO);
+        animals.set(seleccionado, newValue);
+        adapter.notifyItemChanged(seleccionado);
+    }
+
     /**
      * Elimina de la lista el item seleccionado con {@link #onItemClick(View, int)}
      */
@@ -83,30 +86,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         adapter.notifyItemRemoved(seleccionado);
     }
 
-    private void updateSingleItem() {
-        Animal newValue = new Animal("Perro", "Ciudad", R.drawable.zorro);
-        animals.set(seleccionado, newValue);
-        adapter.notifyItemChanged(seleccionado);
-    }
-
     public void consultarTodo() {
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "animals_db", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
         Cursor fila = bd.rawQuery(
                 "select nombre, habitad, photoId from animal", null);
-
         if (fila.moveToFirst()) {
             do {
                 animals.add(new Animal(fila.getString(0), fila.getString(1), Integer.parseInt(fila.getString(2))));
             } while (fila.moveToNext());
-
         } else {
             Toast.makeText(this, "No existe ningún registro", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "SQL: No existen registro");
         }
-
         bd.close();
-
     }
 }

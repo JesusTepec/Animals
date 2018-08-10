@@ -53,7 +53,7 @@ public class AnalyticsRegistro {
         public static final String SOLICITUD_NOTIFICACION = "Solicitud_de_notifcscion";
         public static final String VER_NOTIFICACION = "Notficacion_visualizada";
         public static final String DETALLES_NOTIFICACION = "Detalles_de_notificacion";
-        public static final String NUEVO_REGISTRO = "Nuevo_registro";
+        public static final String NUEVO_REGISTRO = "nuevo_registro";
     }
 
 }

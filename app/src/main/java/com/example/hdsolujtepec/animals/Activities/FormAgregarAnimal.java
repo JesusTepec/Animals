@@ -49,19 +49,17 @@ public class FormAgregarAnimal extends AppCompatActivity implements AdapterView.
 
         ContentValues registro = new ContentValues();
 
-        registro.put("id", 2);
         registro.put("nombre", nombre);
         registro.put("habitad", habitad);
         registro.put("photoId", photo);
 
         bd.insert("animal", null, registro);
-
         bd.close();
 
         Intent main = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(main);
 
-        (new AnalyticsRegistro(this)).registrarEvento(AnalyticsRegistro.Metrica.NUEVO_REGISTRO);
+        (new AnalyticsRegistro(this)).registrarEvento(AnalyticsRegistro.Metrica.SOLICITUD_NOTIFICACION);
 
         Toast.makeText(this, "Nuevo animal agregado", Toast.LENGTH_SHORT).show();
     }

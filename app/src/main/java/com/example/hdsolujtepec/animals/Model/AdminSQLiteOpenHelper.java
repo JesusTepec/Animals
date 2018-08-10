@@ -13,14 +13,14 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table animal(id integer primary key, nombre text, habitad text, photoId integer)");
+        sqLiteDatabase.execSQL("create table animal(id integer primary key AUTOINCREMENT, nombre text, habitad text, photoId integer)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table if exists animal");
 
-        sqLiteDatabase.execSQL("create table animal(id integer primary key, nombre text, habitad text, photoId integer)");
+        sqLiteDatabase.execSQL("create table animal(id integer primary key AUTOINCREMENT, nombre text, habitad text, photoId integer)");
 
     }
 }

@@ -3,5 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorCardView">#8cd1b6</color>
+    <color name="texto">#EEEEEE</color>
+    <color name="indigo">#4b4f81</color>
 </resources>
