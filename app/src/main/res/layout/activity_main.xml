@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Activities.MainActivity">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +40,6 @@
                 android:text="@string/botonEliminar"
                 android:onClick="onButtonClick"/>
         </LinearLayout>
-
     </RelativeLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

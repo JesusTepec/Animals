@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -16,6 +21,7 @@ import com.example.hdsolujtepec.animals.Adapters.PhotosSpinnerAdapter;
 import com.example.hdsolujtepec.animals.Model.AdminSQLiteOpenHelper;
 import com.example.hdsolujtepec.animals.R;
 import com.example.hdsolujtepec.animals.Utilidades.AnalyticsRegistro;
+import com.example.hdsolujtepec.animals.Utilidades.RegexInputFilter;
 
 public class FormAgregarAnimal extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -35,6 +41,14 @@ public class FormAgregarAnimal extends AppCompatActivity implements AdapterView.
         photoId = (Spinner) findViewById(R.id.editTextPhotoId);
         photoId.setAdapter(new PhotosSpinnerAdapter(this, images));
         photoId.setOnItemSelectedListener( this);
+
+        nombre.setFilters(new InputFilter[] {
+                new RegexInputFilter("[A-ZÜa-zü]*")
+        });
+
+    }
+
+    public void vivir(){
 
     }
 
